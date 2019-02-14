@@ -24,15 +24,14 @@ class App extends React.Component {
   }
 
   addTodo = () => {
-    
     const newTodos = [...this.state.todos]
 
     newTodos.push({task: this.state.task, id: Date.now(), completed: false})
     this.setState({todos: newTodos, task: ''})
   }
 
-  handleChanges = e => {
-    e.preventDefault()
+  handleChange = e => {
+    console.log(e)
     this.setState({[e.target.name]: e.target.value })
   }
 
@@ -44,8 +43,9 @@ class App extends React.Component {
         todos={this.state.todos} 
         />
         <TodoForm 
-        handleChanges={this.handleChanges}
-        task={this.state.task} />
+        addTodo={this.addTodo}
+        handleChange={this.handleChange}
+        task={this.state.task}/>
       </div>
     );
   }
