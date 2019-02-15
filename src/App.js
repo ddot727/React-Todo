@@ -32,6 +32,13 @@ class App extends React.Component {
     this.setState({todos: newTodos, task: ''})
   }
 
+  clearTodo = e => {
+    e.preventDefault();
+    this.setState({
+      todos: this.state.todos.filter(todos => !todos.completed)
+    })
+  }
+
   handleChange = e => {
     console.log(e)
     this.setState({[e.target.name]: e.target.value })
@@ -48,13 +55,6 @@ class App extends React.Component {
         }
         return todos;
       })
-    })
-  }
-
-  clearTodo = e => {
-    e.preventDefault();
-    this.setState({
-      todos: this.state.todos.filter(todos => !todos.completed)
     })
   }
 
