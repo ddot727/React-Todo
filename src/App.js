@@ -23,9 +23,9 @@ class App extends React.Component {
 
   }
 
-  addTodo = () => {
+  addTodo = e => {
+    e.preventDefault();
     const newTodos = [...this.state.todos]
-
     newTodos.push({task: this.state.task, id: Date.now(), completed: false})
     this.setState({todos: newTodos, task: ''})
   }
@@ -33,6 +33,20 @@ class App extends React.Component {
   handleChange = e => {
     console.log(e)
     this.setState({[e.target.name]: e.target.value })
+  }
+
+  toggleTask = todosId => {
+    this.setState({
+      todos: this.state.todos.map(todos => {
+        if (todosId === todos.id) {
+          return {
+            ...todos,
+            completed: !todos.completed
+          };
+        }
+        return todos;
+      })
+    })
   }
 
   render() {
